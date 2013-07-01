@@ -71,4 +71,9 @@ describe 'Uni' do
       @egreso[:egreso].should eql "1993 - 1"
     end
   end
+  describe '#notas' do
+    it 'returns hash of grades' do
+      true.should eql true
+    end
+  end
 end

@@ -19,6 +19,16 @@ Uni.fast_uni 19741084 # => "19741084H"
 ```ruby
 Uni.data "19741084H" # => {:codigo=>"19741084H", :nombre=>"...", :facultad=>"...", ...}
 ```
+### Consultar cursos, seccion, evaluaciones, calificaciones, reclamos, etc
+```ruby
+codigo = "20152015"
+password = "99999"
+notas = Uni.notas codigo, password # retorna un Array de Hashes, cada Hash corresponde a un curso
+puts notas[0]
+# { :curso => "CALCULO RECONTRAVARIABLE", :codigo => "CB102", :seccion => "U",
+#   :notas => {:practicas=>[["PRACTICA 1", "15", "--", "19.35%"], [...], ...],
+#              :examenes=>[["EXAMEN PARCIAL", "13", "--", "35.48%"], ...]}}
+```
 ## Ideas/problemas/uso
 * TODO: Clase alumno, Uni.sample, filtrar, subir el modulo uni_private (cursos, notas, etc), cambiar de nombre a la gema
 * Sugerencias, dudas o problemas aqui en la repo o en su defecto a mi [email](mailto:cxrlospxndo@gmail.com).

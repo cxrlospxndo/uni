@@ -1,5 +1,9 @@
+require 'mechanize'
+require 'nokogiri'
+
 require "uni/version"
 require "uni/public_info"
+require "uni/private_info"
 
 module Uni
   class Amijo
