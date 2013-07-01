@@ -7,23 +7,29 @@ $ gem install uni
 ```
 ## Ejemplos de uso:
 ### Obtener la letra del codigo:
+Usando el algoritmo de MOD11
 ```ruby
 Uni.codigo_uni 19741084 # => "19741084H"
 ```
-De ser necesario un calculo de la letra mas rapido, usar fast_uni, pero antes se debe invocar a initialize en la constante 'Uni'
+De ser necesario un calculo de la letra mas rapido(memoria), usar fast_uni, pero antes se debe invocar a initialize en la constante 'Uni'
 ```ruby
 Uni.initialize
 Uni.fast_uni 19741084 # => "19741084H"
 ```
 ### Consultar informacion basica:
+Tambien llamada informacion publica, que se obtiene al hacer busqueda de alumno.
 ```ruby
 Uni.data "19741084H" # => {:codigo=>"19741084H", :nombre=>"...", :facultad=>"...", ...}
 ```
-### Consultar cursos, seccion, evaluaciones, calificaciones, reclamos, etc
+### Consultar cursos, seccion, evaluaciones, calificaciones, etc
+Se require conocer el codigo y password del alumno(regular).
 ```ruby
 codigo = "20152015"
 password = "99999"
-notas = Uni.notas codigo, password # retorna un Array de Hashes, cada Hash corresponde a un curso
+notas = Uni.notas codigo, password
+```
+Retorna un Array de Hashes, cada Hash corresponde a un curso
+```ruby
 puts notas[0]
 # { :curso => "CALCULO RECONTRAVARIABLE", :codigo => "CB102", :seccion => "U",
 #   :notas => {:practicas=>[["PRACTICA 1", "15", "--", "19.35%"], [...], ...],
