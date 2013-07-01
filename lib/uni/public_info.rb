@@ -8,7 +8,7 @@ module Uni
   SITUACION = SITUACIONX + SITUACIONY
   @x, @y = {}, {}
   @base = Mechanize.new
-  # Inicializa las constantes @x y @y
+  # Inicializa las constantes @x y @y, para el uso de #fast_uni
   def self.initialize
     (1900..2014).each do |n|
       tmp, v, ans = n, 2123, 0
@@ -27,19 +27,20 @@ module Uni
         tmp /= 10
       end
       @y[n] = ans
+      "Ahora puedes usar #fast_uni"
     end
   end
-  # Obtiene letra de codigo (mas rapido que la implementacion #codigo_uni)
+  # Obtiene la letra del codigo (mas rapido que la implementacion #codigo_uni)
   # @see #codigo_uni
-  # @param n [Fixnum] Un objeto Fixnum
-  # @return [String] El codigo con su respectiva letra
+  # @param n [Fixnum] Un objeto Fixnum # 20072531
+  # @return [String] El codigo con su respectiva letra # 20072531G
   def self.fast_uni n
     n.to_s + (65 + (@x[n/10000] + @y[n%10000])%11).chr
   end
   # Obtiene letra de codigo 
   # @see #fast_uni
-  # @param n [Fixnum] Un objeto Fixnum
-  # @return [String] El codigo con su respectiva letra
+  # @param n [Fixnum] Un objeto Fixnum # 20072531
+  # @return [String] El codigo con su respectiva letra # 20072531G
   def self.codigo_uni n
       codigo = n.to_s
       v, ans = 21234567, 0
@@ -50,8 +51,8 @@ module Uni
       end
       codigo + (65 + ans%11).chr
   end
-  # Obtiene informacion publica de un alumno
-  # @param codigo [String] Un objeto String, que representa el codigo de un estudiante
+  # Obtiene informacion publica de un alumno # faculta, especialidad, pic:url, ciclo_relativo, etc
+  # @param codigo [String] Un objeto String, que representa el codigo de un estudiante # 20072531G
   # @return [Hash] Informacion publica obtenida de la Orce
 
   def self.data codigo 

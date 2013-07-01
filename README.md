@@ -1,29 +1,32 @@
-# Uni
+Simple interface de la [Orce](http://www.orce.uni.edu.pe/).
+Permite visualizar informacion publica, validar codigo, obtener la letra del mismo y consultar notas (password requerido)
 
-TODO: Write a gem description
+Instalacion
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'uni'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
+```bash
     $ gem install uni
+```
 
-## Usage
+## Ejemplos de uso:
 
-TODO: Write usage instructions here
+### Obtener la letra del codigo:
 
-## Contributing
+```ruby
+    Uni::codigo_uni 19741084 # => "19741084H"
+```
+De ser necesario un calculo de la letra mas rapido, usar fast_uni, pero antes se debe invocar a initialize en la constante 'Uni'
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+```ruby
+    Uni.initialize
+    Uni::fast_uni 19741084 # => "19741084H"
+```
+
+### Consultar informacion basica:
+
+```ruby
+   Uni.data "19741084H" # => {:codigo=>"19741084H", :nombre=>"REYN...", :facultad=>"INGENIERÍA...", ..., :situacion=>"TITULADO"}
+```
+
+* Sugerencias, dudas o problemas aqui en la repo o en su defecto a mi [email](mailto:cxrlospxndo@gmail.com).
+* De momento lo mas cool que he hecho con esto es obtener esta info [2013-I](http://goo.gl/hqNKI)
+
