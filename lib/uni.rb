@@ -21,7 +21,6 @@ module Uni
       data = Uni::data codigo
       puts data
     end
-
     ## cursos y notas
     #def top
     #  ...
