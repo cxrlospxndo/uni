@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Uni by cxrlospxndo</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Uni</h1>
+        <p class="header">Simple gema para acceder a informacion publica y privada de http://www.orce.uni.edu.pe</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/cxrlospxndo/uni/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/cxrlospxndo/uni/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/cxrlospxndo/uni">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/cxrlospxndo">cxrlospxndo</a></p>
+
+
+      </header>
+      <section>
+        <h2>
+<a name="uni" class="anchor" href="#uni"><span class="octicon octicon-link"></span></a>Uni</h2>
+
+<p>Simple interface de la <a href="http://www.orce.uni.edu.pe/">Orce</a>.
+Permite visualizar informacion publica, validar codigo, obtener la letra del mismo y consultar notas (password requerido, pronto ...)</p>
+
+<h2>
+<a name="instalacion" class="anchor" href="#instalacion"><span class="octicon octicon-link"></span></a>Instalacion</h2>
+
+<div class="highlight"><pre><span class="nv">$ </span>gem install uni
+</pre></div>
+
+<h2>
+<a name="ejemplos-de-uso" class="anchor" href="#ejemplos-de-uso"><span class="octicon octicon-link"></span></a>Ejemplos de uso:</h2>
+
+<h3>
+<a name="obtener-la-letra-del-codigo" class="anchor" href="#obtener-la-letra-del-codigo"><span class="octicon octicon-link"></span></a>Obtener la letra del codigo:</h3>
+
+<p>Usando el algoritmo de MOD11</p>
+
+<div class="highlight"><pre><span class="no">Uni</span><span class="o">.</span><span class="n">codigo_uni</span> <span class="mi">19741084</span> <span class="c1"># =&gt; "19741084H"</span>
+</pre></div>
+
+<p>De ser necesario un calculo de la letra mas rapido(memoria), usar fast_uni, pero antes se debe invocar a initialize en la constante 'Uni'</p>
+
+<div class="highlight"><pre><span class="no">Uni</span><span class="o">.</span><span class="n">initialize</span>
+<span class="no">Uni</span><span class="o">.</span><span class="n">fast_uni</span> <span class="mi">19741084</span> <span class="c1"># =&gt; "19741084H"</span>
+</pre></div>
+
+<h3>
+<a name="consultar-informacion-basica" class="anchor" href="#consultar-informacion-basica"><span class="octicon octicon-link"></span></a>Consultar informacion basica:</h3>
+
+<p>Tambien llamada informacion publica, que se obtiene al hacer busqueda de alumno.</p>
+
+<div class="highlight"><pre><span class="no">Uni</span><span class="o">.</span><span class="n">data</span> <span class="s2">"19741084H"</span> <span class="c1"># =&gt; {:codigo=&gt;"19741084H", :nombre=&gt;"...", :facultad=&gt;"...", ...}</span>
+</pre></div>
+
+<h3>
+<a name="consultar-cursos-seccion-evaluaciones-calificaciones-etc" class="anchor" href="#consultar-cursos-seccion-evaluaciones-calificaciones-etc"><span class="octicon octicon-link"></span></a>Consultar cursos, seccion, evaluaciones, calificaciones, etc</h3>
+
+<p>Se require conocer el codigo y password del alumno(regular).</p>
+
+<div class="highlight"><pre><span class="n">codigo</span> <span class="o">=</span> <span class="s2">"20152015"</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">"99999"</span>
+<span class="n">notas</span> <span class="o">=</span> <span class="no">Uni</span><span class="o">.</span><span class="n">notas</span> <span class="n">codigo</span><span class="p">,</span> <span class="n">password</span>
+</pre></div>
+
+<p>Retorna un Array de Hashes, cada Hash corresponde a un curso</p>
+
+<div class="highlight"><pre><span class="nb">puts</span> <span class="n">notas</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+<span class="c1"># { :curso =&gt; "CALCULO RECONTRAVARIABLE", :codigo =&gt; "CB102", :seccion =&gt; "U",</span>
+<span class="c1">#   :notas =&gt; {:practicas=&gt;[["PRACTICA 1", "15", "--", "19.35%"], [...], ...],</span>
+<span class="c1">#              :examenes=&gt;[["EXAMEN PARCIAL", "13", "--", "35.48%"], ...]}}</span>
+</pre></div>
+
+<h2>
+<a name="ideasproblemasuso" class="anchor" href="#ideasproblemasuso"><span class="octicon octicon-link"></span></a>Ideas/problemas/uso</h2>
+
+<ul>
+<li>TODO: Clase alumno, Uni.sample, filtrar, subir el modulo uni_private (cursos, notas, etc), cambiar de nombre a la gema</li>
+<li>Sugerencias, dudas o problemas aqui en la repo o en su defecto a mi <a href="mailto:cxrlospxndo@gmail.com">email</a>.</li>
+<li>De momento lo mas cool que he hecho con esta gema es obtener esta info <a href="http://goo.gl/hqNKI">2013-I</a>
+</li>
+</ul>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
