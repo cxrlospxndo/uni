@@ -34,12 +34,17 @@
 <a name="uni" class="anchor" href="#uni"><span class="octicon octicon-link"></span></a>Uni</h2>
 
 <p>Simple interface de la <a href="http://www.orce.uni.edu.pe/">Orce</a>.
-Permite visualizar informacion publica, validar codigo, obtener la letra del mismo y consultar notas (password requerido, pronto ...)</p>
+Permite visualizar informacion publica, validar codigo, obtener la letra del mismo y consultar notas</p>
 
 <h2>
 <a name="instalacion" class="anchor" href="#instalacion"><span class="octicon octicon-link"></span></a>Instalacion</h2>
 
 <div class="highlight"><pre><span class="nv">$ </span>gem install uni
+</pre></div>
+
+<p>Una vez instalado el uso es simple.</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'uni'</span>
 </pre></div>
 
 <h2>
@@ -53,7 +58,7 @@ Permite visualizar informacion publica, validar codigo, obtener la letra del mis
 <div class="highlight"><pre><span class="no">Uni</span><span class="o">.</span><span class="n">codigo_uni</span> <span class="mi">19741084</span> <span class="c1"># =&gt; "19741084H"</span>
 </pre></div>
 
-<p>De ser necesario un calculo de la letra mas rapido(memoria), usar fast_uni, pero antes se debe invocar a initialize en la constante 'Uni'</p>
+<p>De ser necesario un calculo de la letra mas rapido, usar fast_uni, pero antes se debe invocar a initialize en la constante 'Uni'</p>
 
 <div class="highlight"><pre><span class="no">Uni</span><span class="o">.</span><span class="n">initialize</span>
 <span class="no">Uni</span><span class="o">.</span><span class="n">fast_uni</span> <span class="mi">19741084</span> <span class="c1"># =&gt; "19741084H"</span>
@@ -68,7 +73,7 @@ Permite visualizar informacion publica, validar codigo, obtener la letra del mis
 </pre></div>
 
 <h3>
-<a name="consultar-cursos-seccion-evaluaciones-calificaciones-etc" class="anchor" href="#consultar-cursos-seccion-evaluaciones-calificaciones-etc"><span class="octicon octicon-link"></span></a>Consultar cursos, seccion, evaluaciones, calificaciones, etc</h3>
+<a name="consultar-cursos-y-notas" class="anchor" href="#consultar-cursos-y-notas"><span class="octicon octicon-link"></span></a>Consultar cursos y notas</h3>
 
 <p>Se require conocer el codigo y password del alumno(regular).</p>
 
@@ -80,16 +85,16 @@ Permite visualizar informacion publica, validar codigo, obtener la letra del mis
 <p>Retorna un Array de Hashes, cada Hash corresponde a un curso</p>
 
 <div class="highlight"><pre><span class="nb">puts</span> <span class="n">notas</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
-<span class="c1"># { :curso =&gt; "CALCULO RECONTRAVARIABLE", :codigo =&gt; "CB102", :seccion =&gt; "U",</span>
-<span class="c1">#   :notas =&gt; {:practicas=&gt;[["PRACTICA 1", "15", "--", "19.35%"], [...], ...],</span>
-<span class="c1">#              :examenes=&gt;[["EXAMEN PARCIAL", "13", "--", "35.48%"], ...]}}</span>
+<span class="c1"># { :curso =&gt; "Geometria Analitica", :codigo =&gt; "CB102", :seccion =&gt; "U",</span>
+<span class="c1">#   :notas =&gt; {:practicas=&gt;[["PRACTICA 1", "01", "--", "69.35%"], ...],</span>
+<span class="c1">#              :examenes=&gt;[["EXAMEN PARCIAL", "03", "--", "85.48%"], ...]}}</span>
 </pre></div>
 
 <h2>
 <a name="ideasproblemasuso" class="anchor" href="#ideasproblemasuso"><span class="octicon octicon-link"></span></a>Ideas/problemas/uso</h2>
 
 <ul>
-<li>TODO: Clase alumno, Uni.sample, filtrar, subir el modulo uni_private (cursos, notas, etc), cambiar de nombre a la gema</li>
+<li>TODO: Clase alumno, Uni.sample, filtrar, cambiar de nombre a la gema</li>
 <li>Sugerencias, dudas o problemas aqui en la repo o en su defecto a mi <a href="mailto:cxrlospxndo@gmail.com">email</a>.</li>
 <li>De momento lo mas cool que he hecho con esta gema es obtener esta info <a href="http://goo.gl/hqNKI">2013-I</a>
 </li>
@@ -100,6 +105,16 @@ Permite visualizar informacion publica, validar codigo, obtener la letra del mis
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-42725311-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
