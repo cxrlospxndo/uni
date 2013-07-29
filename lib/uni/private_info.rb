@@ -1,4 +1,3 @@
-URL = "http://www.orce.uni.edu.pe/"
 module Uni
   # Falta refactorizar, aplicar buenas practicas, tests, etc
   # http://www.orce.uni.edu.pe/recordNotas.php?op=cursos&flag=notas
@@ -13,7 +12,7 @@ module Uni
     cursos = []
 
     agent = Mechanize.new
-    params = {"txtusu" => codigo, "txtcla" => password}
+    params = {'txtusu' => codigo, 'txtcla' => password}
     agent.post( URL + "logeo.php", params)
     agent.get URL + "recordNotas.php?op=cursos&flag=notas"
     pag = agent.page
