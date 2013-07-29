@@ -17,7 +17,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">Uni</h1>
-        <p class="header">Simple gema para acceder a informacion publica y privada de http://www.orce.uni.edu.pe</p>
+        <p class="header">Simple gema para acceder a informacion publica y privada de la orce-uni</p>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/cxrlospxndo/uni/zipball/master">Download ZIP</a></li>
@@ -30,11 +30,13 @@
 
       </header>
       <section>
-        <h2>
+        <p><a href="http://badge.fury.io/rb/uni"><img src="https://badge.fury.io/rb/uni.png" alt="Gem Version"></a></p>
+
+<h2>
 <a name="uni" class="anchor" href="#uni"><span class="octicon octicon-link"></span></a>Uni</h2>
 
 <p>Simple interface de la <a href="http://www.orce.uni.edu.pe/">Orce</a>.
-Permite visualizar informacion publica, validar codigo, obtener la letra del mismo y consultar notas</p>
+Permite visualizar informacion publica, validar codigo, obtener la letra del mismo y consultar notas del ultimo ciclo</p>
 
 <h2>
 <a name="instalacion" class="anchor" href="#instalacion"><span class="octicon octicon-link"></span></a>Instalacion</h2>
@@ -42,7 +44,7 @@ Permite visualizar informacion publica, validar codigo, obtener la letra del mis
 <div class="highlight"><pre><span class="nv">$ </span>gem install uni
 </pre></div>
 
-<p>Una vez instalado el uso es simple.</p>
+<p>Una vez instalado el uso es simple, solo debes requerirlo</p>
 
 <div class="highlight"><pre><span class="nb">require</span> <span class="s1">'uni'</span>
 </pre></div>
@@ -56,38 +58,44 @@ Permite visualizar informacion publica, validar codigo, obtener la letra del mis
 <p>Usando el algoritmo de MOD11</p>
 
 <div class="highlight"><pre><span class="no">Uni</span><span class="o">.</span><span class="n">codigo_uni</span> <span class="mi">19741084</span> <span class="c1"># =&gt; "19741084H"</span>
+<span class="no">Uni</span><span class="o">.</span><span class="n">codigo_uni</span> <span class="s2">"19741084"</span> <span class="c1"># =&gt; "19741084H"</span>
 </pre></div>
 
-<p>De ser necesario un calculo de la letra mas rapido, usar fast_uni, pero antes se debe invocar a initialize en la constante 'Uni'</p>
+<h3>
+<a name="validar-codigo" class="anchor" href="#validar-codigo"><span class="octicon octicon-link"></span></a>Validar codigo</h3>
 
-<div class="highlight"><pre><span class="no">Uni</span><span class="o">.</span><span class="n">initialize</span>
-<span class="no">Uni</span><span class="o">.</span><span class="n">fast_uni</span> <span class="mi">19741084</span> <span class="c1"># =&gt; "19741084H"</span>
+<div class="highlight"><pre><span class="no">Uni</span><span class="o">.</span><span class="n">valid?</span> <span class="s2">"19741084K"</span> <span class="c1"># =&gt; false</span>
+<span class="no">Uni</span><span class="o">.</span><span class="n">valid?</span> <span class="s2">"20072531g"</span> <span class="c1"># =&gt; true</span>
 </pre></div>
 
 <h3>
 <a name="consultar-informacion-basica" class="anchor" href="#consultar-informacion-basica"><span class="octicon octicon-link"></span></a>Consultar informacion basica:</h3>
 
-<p>Tambien llamada informacion publica, que se obtiene al hacer busqueda de alumno.</p>
+<p>Tambien llamada informacion publica</p>
 
-<div class="highlight"><pre><span class="no">Uni</span><span class="o">.</span><span class="n">data</span> <span class="s2">"19741084H"</span> <span class="c1"># =&gt; {:codigo=&gt;"19741084H", :nombre=&gt;"...", :facultad=&gt;"...", ...}</span>
+<div class="highlight"><pre><span class="no">Uni</span><span class="o">.</span><span class="n">data</span> <span class="s2">"19741084H"</span>
+<span class="c1"># =&gt; {:codigo=&gt;"19741084H", :nombre=&gt;"...", :facultad=&gt;"...", ...}</span>
 </pre></div>
 
 <h3>
-<a name="consultar-cursos-y-notas" class="anchor" href="#consultar-cursos-y-notas"><span class="octicon octicon-link"></span></a>Consultar cursos y notas</h3>
+<a name="consultar-cursos-seccion-evaluaciones-calificaciones-etc" class="anchor" href="#consultar-cursos-seccion-evaluaciones-calificaciones-etc"><span class="octicon octicon-link"></span></a>Consultar cursos, seccion, evaluaciones, calificaciones, etc</h3>
 
 <p>Se require conocer el codigo y password del alumno(regular).</p>
 
 <div class="highlight"><pre><span class="n">codigo</span> <span class="o">=</span> <span class="s2">"20152015"</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s2">"99999"</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">"99999"</span> 
 <span class="n">notas</span> <span class="o">=</span> <span class="no">Uni</span><span class="o">.</span><span class="n">notas</span> <span class="n">codigo</span><span class="p">,</span> <span class="n">password</span>
 </pre></div>
 
-<p>Retorna un Array de Hashes, cada Hash corresponde a un curso</p>
+<p>Retorna un Array de Hashes, cada Hash corresponde a un curso. Si la informacion proporcionada es invalida, retornara un Array.new</p>
 
-<div class="highlight"><pre><span class="nb">puts</span> <span class="n">notas</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
-<span class="c1"># { :curso =&gt; "Geometria Analitica", :codigo =&gt; "CB102", :seccion =&gt; "U",</span>
-<span class="c1">#   :notas =&gt; {:practicas=&gt;[["PRACTICA 1", "01", "--", "69.35%"], ...],</span>
-<span class="c1">#              :examenes=&gt;[["EXAMEN PARCIAL", "03", "--", "85.48%"], ...]}}</span>
+<div class="highlight"><pre><span class="n">notas</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+<span class="c1"># =&gt; { :curso =&gt; "Geometria Analitica", :codigo =&gt; "CB102", :seccion =&gt; "U",</span>
+<span class="c1">#   :notas =&gt; {:practicas=&gt;[...], :examenes=&gt;[...]}}</span>
+<span class="n">notas</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="ss">:notas</span><span class="o">][</span><span class="ss">:practicas</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span>
+<span class="c1"># =&gt; ["PRACTICA 3", "18", "--", "16.13%"]</span>
+<span class="n">notas</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="ss">:notas</span><span class="o">][</span><span class="ss">:examenes</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span>
+<span class="c1"># =&gt; ["EXAMEN PARCIAL", "08", "--", "32.35%"]</span>
 </pre></div>
 
 <h2>
@@ -95,7 +103,7 @@ Permite visualizar informacion publica, validar codigo, obtener la letra del mis
 
 <ul>
 <li>TODO: Clase alumno, Uni.sample, filtrar, cambiar de nombre a la gema</li>
-<li>Sugerencias, dudas o problemas aqui en la repo o en su defecto a mi <a href="mailto:cxrlospxndo@gmail.com">email</a>.</li>
+<li>Sugerencias, dudas o problemas en la repo(<a href="https://github.com/cxrlospxndo/uni/issues">issues</a>) o en su defecto a mi <a href="mailto:cxrlospxndo@gmail.com">email</a>.</li>
 <li>De momento lo mas cool que he hecho con esta gema es obtener esta info <a href="http://goo.gl/hqNKI">2013-I</a>
 </li>
 </ul>
