@@ -16,18 +16,16 @@ Usando el algoritmo de MOD11
 Uni.codigo_uni 19741084 # => "19741084H"
 Uni.codigo_uni "19741084" # => "19741084H"
 ```
-<!---
-De ser necesario un calculo de la letra mas rapido, usar fast_uni, pero antes se debe invocar a initialize en la constante 'Uni'
+### Validar codigo
 ```ruby
-Uni.initialize
-Uni.fast_uni 19741084 # => "19741084H"
+Uni.valid? "19741084K" # => false
+Uni.valid? "20072531g" # => true
 ```
---->
 ### Consultar informacion basica:
-Tambien llamada informacion publica, que se obtiene al hacer busqueda de alumno.
+Tambien llamada informacion publica
 ```ruby
 Uni.data "19741084H"
-# {:codigo=>"19741084H", :nombre=>"...", :facultad=>"...", ...}
+# => {:codigo=>"19741084H", :nombre=>"...", :facultad=>"...", ...}
 ```
 ### Consultar cursos, seccion, evaluaciones, calificaciones, etc
 Se require conocer el codigo y password del alumno(regular).
@@ -36,15 +34,15 @@ codigo = "20152015"
 password = "99999" 
 notas = Uni.notas codigo, password
 ```
-Si la informacion proporcionada es invalida, retornara un Hash.new
-Retorna un Array de Hashes, cada Hash corresponde a un curso
+Retorna un Array de Hashes, cada Hash corresponde a un curso. Si la informacion proporcionada es invalida, retornara un Array.new
 ```ruby
-puts notas[0]
-# { :curso => "Geometria Analitica", :codigo => "CB102", :seccion => "U",
-#   :notas => {:practicas=>[["PRACTICA 1", "01", "02", "49.35%"], ...],
-#              :examenes=>[["EXAMEN PARCIAL", "11", "--", "75.48%"], ...]}}
-puts notas[0][:notas][:practicas][1]
-puts notas[0][:notas][:examenes][0]
+notas[0]
+# => { :curso => "Geometria Analitica", :codigo => "CB102", :seccion => "U",
+#   :notas => {:practicas=>[...], :examenes=>[...]}}
+notas[0][:notas][:practicas][2]
+# => ["PRACTICA 3", "18", "--", "16.13%"]
+notas[0][:notas][:examenes][0]
+# => ["EXAMEN PARCIAL", "08", "--", "32.35%"]
 ```
 ## Ideas/problemas/uso
 * TODO: Clase alumno, Uni.sample, filtrar, cambiar de nombre a la gema

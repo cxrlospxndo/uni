@@ -83,7 +83,7 @@ module Uni
     end
     info
   end
-  # Valida que el codigo pertenezca a un alumno
+  # Valida que el codigo pertenezca a un alumno(existe)
   # @param codigo [String] Un objeto String, que representa el codigo de un estudiante # 20072531G, 20072531
   # @return [Boolean] es valido?
   def self.valid? codigo
@@ -98,9 +98,5 @@ module Uni
     end
     a[6].split('-').join(' ') == '' ? false:true
   end
-
-
-  #def self.valido? codigo # deberia ser codigo.valid?, de momento lo dejamos en Uni.valido? "20072531a"
-  #
-  #end
+  # deberia ser codigo.valid?, de momento lo dejamos en Uni.valido? "20072531a"
 end
