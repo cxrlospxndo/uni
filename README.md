@@ -1,6 +1,6 @@
 ## Uni
 Simple interface de la [Orce](http://www.orce.uni.edu.pe/).
-Permite visualizar informacion publica, validar codigo, obtener la letra del mismo y consultar notas (password requerido, pronto ...)
+Permite visualizar informacion publica, validar codigo, obtener la letra del mismo y consultar notas (password requerido)
 ## Instalacion
 ```bash
 $ gem install uni

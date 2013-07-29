@@ -42,6 +42,7 @@ module Uni
   def self.codigo_uni n
       codigo = n.to_s
       v, ans = 21234567, 0
+      #        20072531
       8.times do 
           ans += (n%10)*(v%10)
           v /= 10
