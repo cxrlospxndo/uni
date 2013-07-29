@@ -11,6 +11,12 @@ describe 'Uni' do
     end
   end
 
+  describe '#valid?' do
+    specify { Uni.valid?(20072531).should be_true }
+    specify { Uni.valid?('20072531g').should be_true }
+    specify { Uni.valid?('20072531a').should_not be_true }
+  end
+
   describe '#codigo_Uni' do
     context 'param is String' do
       it 'returns a String' do
@@ -101,17 +107,17 @@ describe 'Uni' do
       fixnum[:situacion].should eql 'ALUMNO REGULAR'
       fixnum[:medida_disciplinaria].should eql 'NO TIENE'
     end
-    it 'returns data for 20072531G' do
+    it 'returns data for "20072531G"' do
       regular[:nombre].should eql 'PANDO MORALES CARLOS ENRIQUE'
       regular[:situacion].should eql 'ALUMNO REGULAR'
       regular[:medida_disciplinaria].should eql 'NO TIENE'
     end
-    it 'returns "ARIZOLA  FRANCISCO P" for :nombre of 19100003B' do
+    it 'returns data for "19100003B"' do
       titulado[:nombre].should eql 'ARIZOLA  FRANCISCO P'
       titulado[:situacion].should eql 'TITULADO'
       titulado[:especialidad].should eql 'INGENIERÍA CIVIL'
     end
-    it 'returns "1993 - 1" for :egreso of 19780540K' do
+    it 'returns "1993 - 1" for :egreso of "19780540K"' do
       egresado[:egreso].should eql '1993 - 1'
     end
   end

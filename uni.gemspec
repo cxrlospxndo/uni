@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Carlos Pando"]
   spec.email         = ["cxrlospxndo@gmail.com"]
   spec.summary       = %q{Libreria en Ruby para obtener informacion basica de la Orce-Uni}
-  spec.description   = %q{Simpe interface de la orce, para consultar informacion publica y privada de un alumno}
+  spec.description   = %q{Simple interface de la orce, para consultar informacion publica y privada de un alumno}
   spec.homepage      = "http://cxrlospxndo.github.io/uni/"
   spec.license       = "MIT"
 

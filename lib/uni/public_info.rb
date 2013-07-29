@@ -83,6 +83,22 @@ module Uni
     end
     info
   end
+  # Valida que el codigo pertenezca a un alumno
+  # @param codigo [String] Un objeto String, que representa el codigo de un estudiante # 20072531G, 20072531
+  # @return [Boolean] es valido?
+  def self.valid? codigo
+    codigo = codigo_uni codigo if codigo.is_a? Fixnum
+    agent = @base
+    cod = codigo.upcase
+    url = Uni::URL + "detaalu.php?id=#{cod}&op=detalu"
+    page = agent.get url
+    a = []
+    page.parser.css('tr td').each do |f|
+      a << f.text
+    end
+    a[6].split('-').join(' ') == '' ? false:true
+  end
+
 
   #def self.valido? codigo # deberia ser codigo.valid?, de momento lo dejamos en Uni.valido? "20072531a"
   #
