@@ -13,8 +13,8 @@ module Uni
 
     agent = Mechanize.new
     params = {'txtusu' => codigo, 'txtcla' => password}
-    agent.post( URL + "logeo.php", params)
-    agent.get URL + "recordNotas.php?op=cursos&flag=notas"
+    agent.post( Uni::URL + 'logeo.php', params)
+    agent.get Uni::URL + 'recordNotas.php?op=cursos&flag=notas'
     pag = agent.page
     a=[]
     pag.parser.css('tr.fila td').each do |f|
@@ -24,15 +24,15 @@ module Uni
     n = a.size/5
 
     (1..n).each do |i|
-      ans = { curso: "", codigo: "", seccion: "", notas: {} }
+      ans = { curso: '', codigo: '', seccion: '', notas: {} }
       ind = (i-1)*5
       curso = a[ind.. ind+4]
       ans[:codigo] = curso[0]
       ans[:curso] = curso[1]
       ans[:seccion] = curso[2]
 
-      practicas = obtener_notas_de "Practicas", ans[:codigo], ans[:seccion], agent
-      examenes = obtener_notas_de "Teoria", ans[:codigo], ans[:seccion], agent
+      practicas = obtener_notas_de 'Practicas', ans[:codigo], ans[:seccion], agent
+      examenes = obtener_notas_de 'Teoria', ans[:codigo], ans[:seccion], agent
 
       ans[:notas] = { practicas: practicas, examenes: examenes}
       cursos << ans
@@ -43,11 +43,11 @@ module Uni
   # @return [Array] Nota del curso
 
   def self.obtener_notas_de evaluacion, codigo, seccion, agent
-    agent.get URL+"recordNotas.php?op=notas&tipo=#{evaluacion}&codcur=#{codigo}&facul=I&codsec=#{seccion}"
+    agent.get Uni::URL+"recordNotas.php?op=notas&tipo=#{evaluacion}&codcur=#{codigo}&facul=I&codsec=#{seccion}"
     pag_evaluacion = agent.page
 
     evaluacion=[]
-    pag_evaluacion.parser.css("tr td").each_slice(4) do |f|
+    pag_evaluacion.parser.css('tr td').each_slice(4) do |f|
       ans = []
       f.each do |c|
         ans << c.content.gsub(/\u00a0/, '') #&nbsp

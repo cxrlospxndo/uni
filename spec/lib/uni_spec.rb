@@ -1,7 +1,16 @@
 # encoding: utf-8
 require 'spec_helper'
 describe 'Uni' do
-  
+
+  context 'parameters' do
+    it 'has correct orce''s url' do
+      Uni::URL.should eql 'http://www.orce.uni.edu.pe/'
+    end
+    it 'has a collection of all posible situacion' do
+      Uni::SITUACION.should be_an_instance_of Array
+    end
+  end
+
   describe '#codigo_Uni' do
     context 'param is String' do
       it 'returns a String' do
@@ -77,29 +86,29 @@ describe 'Uni' do
     let(:titulado) { Uni::data '19100003B' }
     let(:egresado) { Uni::data '19780540K' }
     let(:invalido) { Uni::data '20072531a' }
+    let(:fixnum) { Uni.data 20072531 }
+    let(:inv_fixnum) { Uni.data 2007253 }
 
     it 'returns a Hash' do
       regular.should be_an_instance_of Hash
     end
     it 'returns an empty Hash if codigo is invalid' do
       invalido.should eql Hash.new
+      inv_fixnum.should eql Hash.new
     end
-    it 'returns "PANDO MORALES CARLOS ENRIQUE" for :nombre of 20072531G' do
+    it 'works with param as Fixnum' do
+      fixnum[:nombre].should eql 'PANDO MORALES CARLOS ENRIQUE'
+      fixnum[:situacion].should eql 'ALUMNO REGULAR'
+      fixnum[:medida_disciplinaria].should eql 'NO TIENE'
+    end
+    it 'returns data for 20072531G' do
       regular[:nombre].should eql 'PANDO MORALES CARLOS ENRIQUE'
-    end
-    it 'returns "ALUMNO REGULAR" for :situacion of 20072531G' do
       regular[:situacion].should eql 'ALUMNO REGULAR'
-    end
-    it 'returns "NO TIENE" for :medida_disciplinaria of 20072531G' do
       regular[:medida_disciplinaria].should eql 'NO TIENE'
     end
     it 'returns "ARIZOLA  FRANCISCO P" for :nombre of 19100003B' do
       titulado[:nombre].should eql 'ARIZOLA  FRANCISCO P'
-    end
-    it 'returns "TITULADO" for :situacion of 19100003B' do
       titulado[:situacion].should eql 'TITULADO'
-    end
-    it 'returns "INGENIERÍA CIVIL" for :especialidad of 19100003B' do
       titulado[:especialidad].should eql 'INGENIERÍA CIVIL'
     end
     it 'returns "1993 - 1" for :egreso of 19780540K' do

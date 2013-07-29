@@ -1,9 +1,5 @@
 # encoding: utf-8
-SITUACIONX = [ "SUSPENSION VOLUNTARIA", "ALUMNO REGULAR", "INACTIVO", "EN REGULARIZACION DE CURSO(S)", "EXPULSADO", "INACTIVO", "RETIRADO ", "FALLECIDO", "SUSPENSION ", "PROYECTO ESPECIAL ALUMNOS UNI"]
-SITUACIONY = [ "TITULADO", "BACHILLER", "EGRESADO"]
-
 module Uni
-  SITUACION = SITUACIONX + SITUACIONY
   @x, @y = {}, {}
   @base = Mechanize.new
   # Inicializa las constantes @x y @y, para el uso de #fast_uni
@@ -50,38 +46,39 @@ module Uni
       end
       codigo.to_s + (65 + ans%11).chr
   end
-  # Obtiene informacion publica de un alumno # faculta, especialidad, pic:url, ciclo_relativo, etc
-  # @param codigo [String] Un objeto String, que representa el codigo de un estudiante # 20072531G
+  # Obtiene informacion publica de un alumno # facultad, especialidad, pic:url, ciclo_relativo, etc
+  # @param codigo [String] Un objeto String, que representa el codigo de un estudiante # 20072531G, 20072531
   # @return [Hash] Informacion publica obtenida de la Orce
 
-  def self.data codigo 
+  def self.data codigo
+    codigo = codigo_uni codigo if codigo.is_a? Fixnum
     agent = @base
     cod = codigo.upcase
-    url = 'http://www.orce.uni.edu.pe/' + "detaalu.php?id=#{cod}&op=detalu"
+    url = Uni::URL + "detaalu.php?id=#{cod}&op=detalu"
 
     page = agent.get url  
     a = []
 
-    page.parser.css("tr td").each do |f|
+    page.parser.css('tr td').each do |f|
       a << f.text
     end
 
-    nombre = a[6].split("-").join(" ")
-    return {} if nombre == ""
+    nombre = a[6].split('-').join(' ')
+    return {} if nombre == ''
     info = { codigo: codigo, nombre: nombre }
     info[:facultad] = a[9]
     info[:especialidad] = a[12]
     info[:situacion] = a[15]
-    info[:pic] = "http://www.orce.uni.edu.pe/" + page.parser.css("img")[3]['src']
-    info[:pic] = "NO TIENE FOTO" if /nose/ =~ info[:pic]
+    info[:pic] = Uni::URL + page.parser.css('img')[3]['src']
+    info[:pic] = 'NO TIENE FOTO' if /nose/ =~ info[:pic]
 
-    info[:ciclo_relativo] = page.parser.xpath('//td[@bgcolor!="#ffffff"]').last.text.gsub(/[.]/, '').to_i rescue " "
+    info[:ciclo_relativo] = page.parser.xpath('//td[@bgcolor!="#ffffff"]').last.text.gsub(/[.]/, '').to_i rescue ' '
 
-    if SITUACIONX.include? info[:situacion] 
-      info[:egreso] = "" 
+    if Uni::SITUACION[0..9].include? info[:situacion]
+      info[:egreso] = ''
       info[:medida_disciplinaria] = a[18]
     else 
-      info[:egreso] = a[17].length == 3 ? "" : a[17]
+      info[:egreso] = a[17].length == 3 ? '' : a[17]
       info[:medida_disciplinaria] = a[20]
     end
     info
