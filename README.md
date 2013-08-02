@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/uni.png)](http://badge.fury.io/rb/uni)
+[![Gem Version](https://badge.fury.io/rb/uni.png)](http://badge.fury.io/rb/uni) [![Build Status](https://travis-ci.org/cxrlospxndo/uni.png?branch=master)](https://travis-ci.org/cxrlospxndo/uni)
 ## Uni
 Simple interface de la [Orce](http://www.orce.uni.edu.pe/).
 Permite visualizar informacion publica, validar codigo, obtener la letra del mismo y consultar notas del ultimo ciclo
