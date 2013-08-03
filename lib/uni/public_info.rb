@@ -51,6 +51,7 @@ module Uni
   # @return [Hash] Informacion publica obtenida de la Orce
 
   def self.data codigo
+    return Hash.new unless codigo
     codigo = codigo_uni codigo if codigo.is_a? Fixnum
     agent = @base
     cod = codigo.upcase

@@ -98,6 +98,9 @@ describe 'Uni' do
     it 'returns a Hash' do
       regular.should be_an_instance_of Hash
     end
+    it 'returns an empty Hash if codigo is nil' do
+      Uni.data(nil).should eql Hash.new
+    end
     it 'returns an empty Hash if codigo is invalid' do
       invalido.should eql Hash.new
       inv_fixnum.should eql Hash.new
