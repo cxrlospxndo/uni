@@ -64,7 +64,7 @@ module Uni
       a << f.text
     end
 
-    nombre = a[6].split('-').join(' ')
+    nombre = a[6].split('-').join(' ').strip
     return {} if nombre == ''
     info = { codigo: codigo, nombre: nombre }
     info[:facultad] = a[9]
