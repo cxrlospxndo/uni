@@ -20,6 +20,8 @@ module Uni
     pag.parser.css('tr.fila td').each do |f|
       a << f.text
     end
+    school = Uni.get_facultad codigo
+    id = Uni::FACULTADES[school]
 
     n = a.size/5
 
@@ -31,8 +33,8 @@ module Uni
       ans[:curso] = curso[1]
       ans[:seccion] = curso[2]
 
-      practicas = obtener_notas_de 'Practicas', ans[:codigo], ans[:seccion], agent
-      examenes = obtener_notas_de 'Teoria', ans[:codigo], ans[:seccion], agent
+      practicas = obtener_notas_de 'Practicas', ans[:codigo], ans[:seccion], id, agent
+      examenes = obtener_notas_de 'Teoria', ans[:codigo], ans[:seccion], id, agent
 
       ans[:notas] = { practicas: practicas, examenes: examenes}
       cursos << ans
@@ -42,8 +44,8 @@ module Uni
   # Obtiene las notas de un curso por tipo de evaluacion (practicas, teoria)
   # @return [Array] Nota del curso
 
-  def self.obtener_notas_de evaluacion, codigo, seccion, agent
-    agent.get Uni::URL+"recordNotas.php?op=notas&tipo=#{evaluacion}&codcur=#{codigo}&facul=I&codsec=#{seccion}"
+  def self.obtener_notas_de evaluacion, codigo, seccion, id, agent
+    agent.get Uni::URL+"recordNotas.php?op=notas&tipo=#{evaluacion}&codcur=#{codigo}&facul=#{id}&codsec=#{seccion}"
     pag_evaluacion = agent.page
 
     evaluacion=[]

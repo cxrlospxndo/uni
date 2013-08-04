@@ -87,6 +87,10 @@ describe 'Uni' do
     end
 
   end
+  describe '#get_facultad' do
+    specify { Uni.get_facultad('20072531g').should eql 'INGENIERÍA INDUSTRIAL Y DE SISTEMAS' }
+    specify { Uni.get_facultad('20104512B').should eql 'INGENIERÍA AMBIENTAL' }
+  end
   describe '#data' do
     let(:regular) { Uni::data '20072531G' }
     let(:titulado) { Uni::data '19100003B' }
@@ -131,19 +135,19 @@ describe 'Uni' do
     xit 'returns an empty Array for invalid codigo and/or password'
     xit 'works with codigo as Fixnum or String'
 
-    context 'every element of Array' do
+    context 'items' do
       xit 'should be an instance of Hash'
       xit 'should have the keys :curso, :codigo, :seccion, :notas'
-      xit 'should have an instance of String as value for :curso, :codigo, :seccion'
-      xit 'should have an instance of Hash as value for :notas'
-      context ':notas' do
-        xit 'contains :practicas and :examenes'
-        context ':practicas and :examenes' do
+      xit 'should have a String as value for :curso, :codigo and :seccion'
+      xit 'should have a Hash as value for :notas'
+      context 'has key :notas' do
+        xit 'contains keys :practicas and :examenes'
+        context 'its keys :practicas and :examenes' do
           xit 'contains an instance of Array'
-          xit 'contains Strings as elements'
+          xit 'represents an evaluation has fields: type, grade, complaint and a fail rate'
         end
       end
     end
-
   end
 end
+puts Uni.notas "20072531g", 91424

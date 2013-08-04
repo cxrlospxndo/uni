@@ -100,4 +100,15 @@ module Uni
     a[6].split('-').join(' ') == '' ? false:true
   end
   # deberia ser codigo.valid?, de momento lo dejamos en Uni.valido? "20072531a"
+  # helpers
+  def self.get_facultad codigo
+    return '' unless codigo
+    codigo = codigo_uni codigo if codigo.is_a? Fixnum
+    agent = @base
+    cod = codigo.upcase
+    url = Uni::URL + "detaalu.php?id=#{cod}&op=detalu"
+    page = agent.get url
+    f = page.parser.css('tr td')[9]
+    f.text
+  end
 end
