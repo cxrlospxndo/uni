@@ -19,31 +19,19 @@ describe 'Uni' do
 
   describe '#codigo_Uni' do
     context 'param is String' do
-      it 'returns a String' do
+      specify do
         Uni::codigo_uni('20072531').should be_an_instance_of String
-      end
-      it 'returns "20072531G" for 20072531' do
         Uni::codigo_uni('20072531').should eql '20072531G'
-      end
-      it 'returns "19100003B" for 19100003' do
         Uni::codigo_uni('19100003').should eql '19100003B'
-      end
-      it 'returns "20090435F" for 20090435' do
         Uni::codigo_uni('20090435').should eql '20090435F'
       end
     end
 
     context 'param is Fixnum' do
-      it 'returns a String' do
+      specify do
         Uni::codigo_uni(20072531).should be_an_instance_of String
-      end
-      it 'returns "20072531G" for 20072531' do
         Uni::codigo_uni(20072531).should eql '20072531G'
-      end
-      it 'returns "19100003B" for 19100003' do
         Uni::codigo_uni(19100003).should eql '19100003B'
-      end
-      it 'returns "20090435F" for 20090435' do
         Uni::codigo_uni(20090435).should eql '20090435F'
       end
     end
@@ -57,35 +45,18 @@ describe 'Uni' do
     end
 
     context 'param is String' do
-      it 'returns a String' do
-        Uni::fast_uni('20072531').should be_an_instance_of String
-      end
-      it 'returns "20072531G" for 20072531' do
-        Uni::fast_uni('20072531').should eql '20072531G'
-      end
-      it 'returns "19100003B" for 19100003' do
-        Uni::fast_uni('19100003').should eql '19100003B'
-      end
-      it 'returns "20090435F" for 20090435' do
-        Uni::fast_uni('20090435').should eql '20090435F'
-      end
+      specify { Uni::fast_uni('20072531').should be_an_instance_of String }
+      specify { Uni::fast_uni('20072531').should eql '20072531G' }
+      specify { Uni::fast_uni('19100003').should eql '19100003B' }
+      specify { Uni::fast_uni('20090435').should eql '20090435F' }
     end
 
     context 'param is Fixnum' do
-      it 'returns a String' do
-        Uni::fast_uni(20072531).should be_an_instance_of String
-      end
-      it 'returns "20072531G" for 20072531' do
-        Uni::fast_uni(20072531).should eql '20072531G'
-      end
-      it 'returns "19100003B" for 19100003' do
-        Uni::fast_uni(19100003).should eql '19100003B'
-      end
-      it 'returns "20090435F" for 20090435' do
-        Uni::fast_uni(20090435).should eql '20090435F'
-      end
+      specify { Uni::fast_uni(20072531).should be_an_instance_of String }
+      specify { Uni::fast_uni(20072531).should eql '20072531G' }
+      specify { Uni::fast_uni(19100003).should eql '19100003B' }
+      specify { Uni::fast_uni(20090435).should eql '20090435F' }
     end
-
   end
   describe '#get_facultad' do
     specify { Uni.get_facultad('20072531g').should eql 'INGENIERÍA INDUSTRIAL Y DE SISTEMAS' }

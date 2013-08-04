@@ -1,9 +1,4 @@
 module Uni
-  # Falta refactorizar, aplicar buenas practicas, tests, etc
-  # http://www.orce.uni.edu.pe/recordNotas.php?op=cursos&flag=notas
-  # http://www.orce.uni.edu.pe/recordNotas.php?op=notas&tipo=Teoria&codcur=GP102&facul=I&codsec=V
-  # http://www.orce.uni.edu.pe/recordNotas.php?op=notas&tipo=Practicas&codcur=GP102&facul=I&codsec=V
-  # Se muestran las tablas tal cual, para evitar problemas en # de practicas, monografias, laboratorios, etc
   # Obtiene las notas de un alumno regular
   # @param codigo [String] Codigo del alumno # "20152015G"
   # @param password [String] password de orce # "12345"

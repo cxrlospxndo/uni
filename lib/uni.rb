@@ -1,10 +1,10 @@
 require 'mechanize'
 require 'nokogiri'
 
-require "uni/params"
-require "uni/version"
-require "uni/public_info"
-require "uni/private_info"
+require 'uni/params'
+require 'uni/version'
+require 'uni/public_info'
+require 'uni/private_info'
 
 module Uni
   # Ejemplo de uso de #codigo_uni, #fast_uni y #data
