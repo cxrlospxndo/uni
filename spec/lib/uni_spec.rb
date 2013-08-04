@@ -150,4 +150,3 @@ describe 'Uni' do
     end
   end
 end
-puts Uni.notas "20072531g", 91424

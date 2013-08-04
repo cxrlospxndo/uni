@@ -73,7 +73,7 @@ module Uni
     info[:pic] = Uni::URL + page.parser.css('img')[3]['src']
     info[:pic] = 'NO TIENE FOTO' if /nose/ =~ info[:pic]
 
-    info[:ciclo_relativo] = page.parser.xpath('//td[@bgcolor!="#ffffff"]').last.text.gsub(/[.]/, '').to_i rescue ' '
+    info[:ciclo_relativo] = page.parser.xpath('//td[@bgcolor!="#ffffff"]').last.text.gsub(/[.]/, '').to_i rescue ''
 
     if Uni::SITUACION[0..9].include? info[:situacion]
       info[:egreso] = ''
